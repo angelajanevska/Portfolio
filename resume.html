@@ -1,0 +1,802 @@
+<head>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll(".content");
+      const navLinks = document.querySelectorAll("li a");
+
+      window.onscroll = () => {
+        let current = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 400;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.parentNode.classList.remove("active");
+          if (link.getAttribute("href").slice(1) === current) {
+            link.parentNode.classList.add("active");
+            link.querySelector('.emoji').style.display = 'inline'; // Show the emoji span
+          } else {
+            link.querySelector('.emoji').style.display = 'none'; // Hide the emoji span
+          }
+        });
+
+        sections.forEach((section) => {
+          const sectionId = section.getAttribute("id");
+          if (sectionId === current) {
+            section.classList.add("active");
+            section.classList.remove("inactive");
+          } else {
+            section.classList.add("inactive");
+            section.classList.remove("active");
+          }
+        });
+      };
+    });
+
+    function cardHoverFunction(card) {
+      card.classList.remove("bg-transparent");
+      card.classList.add("graybg");
+    }
+
+    function cardMouseLeaveFunction(card) {
+      card.classList.add("bg-transparent");
+    }
+
+    function showMoreProjects() {
+      var additionalProjects = document.getElementById('additionalProjects');
+      additionalProjects.transition = 'all 0.9s ease-in-out';
+      additionalProjects.style.opacity = '100%';
+
+      document.getElementById("hide-btn").style.visibility = "hidden";
+
+      document.getElementById("hide-btn").style.transition = "transition: visibility 0s 1s, opacity 1s linear;"
+
+    }
+
+
+  </script>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Inter|Futura|Cookie|Bangers|Cinzel:400,700,900|Lato:100,300,400,700,900|Lobster|Lora:400,700|Mansalva|Muli:200,300,400,600,700,800,900|Open+Sans:300,400,600,700,800|Oswald:200,300,400,500,600,700|Roboto:100,300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/hilsfiger');
+@import url('https://fonts.cdnfonts.com/css/kaushan-script');
+@import url('https://fonts.cdnfonts.com/css/modern-typewriter');
+@import url('https://fonts.cdnfonts.com/css/lt-binary-neue');
+@import url('https://fonts.cdnfonts.com/css/inter');
+@import url('https://fonts.cdnfonts.com/css/glametrix');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+@import url('https://fonts.cdnfonts.com/css/proxima-nova-condensed');
+@import url('https://fonts.cdnfonts.com/css/playfair-display');
+@import url('https://fonts.cdnfonts.com/css/medula-one');
+@import url('https://fonts.cdnfonts.com/css/lato');
+
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+font-family: 'Lato', sans-serif; 
+backdrop-filter: blur(5px);
+padding: 0;
+margin: 0;
+}
+
+body {
+height: auto;
+overscroll-behavior:none;
+backdrop-filter: blur(5px);
+font-family: 'Lato', sans-serif; 
+/* background: linear-gradient(147deg, rgb(18, 34, 42)9%, #040404 53%); */
+background-color:hsla(189,100%,56%,1);
+background-image:
+radial-gradient(at 97% 67%, hsla(225,0%,0%,0.49) 0px, transparent 50%),
+radial-gradient(at 24% 68%, hsla(65,0%,0%,1) 0px, transparent 50%),
+radial-gradient(at 99% 38%, hsla(84,0%,0%,1) 0px, transparent 50%),
+radial-gradient(at 3% 100%, hsla(331,0%,0%,1) 0px, transparent 50%),
+radial-gradient(at 49% 34%, hsla(168,0%,0%,1) 0px, transparent 50%),
+radial-gradient(at 34% 5%, hsla(123,0%,0%,1) 0px, transparent 50%),
+radial-gradient(at 0% 18%, hsla(261,100%,0%,1) 0px, transparent 50%),
+radial-gradient(at 91% 7%, hsla(132,0%,0%,1) 0px, transparent 50%),
+radial-gradient(at 90% 100%, hsla(177,0%,0%,1) 0px, transparent 50%);
+/* backdrop-filter: blur(50px); */
+margin: 0;
+padding: 0 10% 0 10%;
+width: 100%;
+/* background-color: #99b6ff; */
+/* background-image:
+radial-gradient(at 8% 87%, hsla(260, 98%, 0%, 1) 0px, transparent 50%),
+radial-gradient(at 62% 70%, hsla(98, 72%, 0%, 1) 0px, transparent 50%),
+radial-gradient(at 55% 95%, hsla(360, 69%, 0%, 1) 0px, transparent 50%),
+radial-gradient(at 13% 92%, hsla(199, 88%, 0%, 1) 0px, transparent 50%),
+radial-gradient(at 8% 67%, hsla(260, 98%, 0%, 1) 0px, transparent 50%),
+radial-gradient(at 45% 29%, hsla(202, 71%, 0%, 1) 0px, transparent 50%),
+radial-gradient(at 99% 34%, hsla(12, 99%, 0%, 1) 0px, transparent 50%),
+radial-gradient(at 8% 51%, hsla(68, 93%, 0%, 1) 0px, transparent 50%); */
+font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+.hide-small-sc{
+    display: none;
+}
+}
+
+.flex-container {
+display: flex;
+}
+
+aside {
+position: sticky;
+top: 80px; /* the height of the header (60px) + its bottom margin (20px) */
+/* border: 1px solid goldenrod; */
+padding: 20px;
+height: 500px;
+margin-bottom: 20px;
+}
+
+main {
+padding-left: 20px;
+flex-grow: 1;
+}
+
+.content {
+/* border: 1px solid #3b49df; */
+/* height: 30%; */
+padding: 10%;
+/* margin-bottom: 10%; */
+}
+
+.content.inactive {
+opacity: 0.3; /* Adjust this value as needed for the desired opacity of inactive sections */
+transition: opacity 0.5s ease; /* Add a smooth transition effect */
+}
+
+.content.active {
+opacity: 1; /* Adjust this value as needed for the desired opacity of the active section */
+transition: opacity 0.5s ease; /* Add a smooth transition effect */
+}
+
+li.active {
+/* background-color: #3b49df; */
+border-radius:30px;
+transition: 0.3s;
+color: #ffffff;
+}
+
+.active{
+color: #b2b5b6;
+}
+
+h1 {
+font-family: 'Medula One', sans-serif;                                                   
+/* font-family: 'Proxima Nova Condensed', sans-serif; */
+/* font-family: 'Hilsfiger', sans-serif; */
+/* font-family: 'LT Binary Neue', sans-serif;
+font-family: 'LT Binary Neue Round', sans-serif; */
+color: white;
+font-weight: bold;
+font-size: 4rem;
+text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2), 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+p{
+font-family: 'Lato', sans-serif;  
+/* font-family: 'Hilsfiger', sans-serif; */
+/* font-family: 'Baby  Sleepwear', sans-serif; */
+/* font-family: 'Glametrix', sans-serif; */
+/* font-style: italic; */
+color:#b2b5b6;
+/* font-size: 2rem; */
+}
+
+.timeline{
+color:#b2b5b6;
+opacity: 80%;
+
+}
+
+.context{
+color:#b2b5b6;
+}
+
+
+.org-color{
+opacity: 100%;
+color:tomato !important;
+}
+
+.org-link{
+transition: all 0.1s ease;
+}
+
+.org-link:hover{
+text-shadow: 1px 1px orange;
+}
+
+.show-more-btn{
+transition: all 0.1s ease;
+}
+
+.show-more-btn:hover{
+transform: scale(1.05);
+}
+
+.social i {
+transition: transform 0.3s ease-in-out;
+}
+
+.social i:hover{
+transform: scale(5);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+h3 {
+font-family: 'Lato', sans-serif;  
+font-weight: bold;
+font-style: italic;
+/* font-family: 'MODERN TYPEWRITER', sans-serif; */
+/* font-family: 'LT Binary Neue', sans-serif;
+font-family: 'LT Binary Neue Round', sans-serif; */
+}
+
+.numbers-txt{
+color:#00bcf2;
+font-size: 1rem ;
+text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.years-info{
+color:#b2b5b6 !important;
+}
+
+.line-1 {
+/* position: relative; */
+/* top: 50%;   */
+border-right: 2px solid rgba(255, 255, 255, .75);
+white-space: nowrap;
+overflow: hidden;
+font-size:large;
+opacity: 80%;
+/* transform: translateY(-50%);     */
+}
+
+
+/* Animation */
+.anim-typewriter {
+animation: typewriter 3s steps(44) 1s 1 normal both,
+    blinkTextCursor 1000ms steps(44) infinite normal;
+}
+
+@keyframes typewriter {
+from {
+    width: 0;
+}
+
+to {
+    width: 14em;
+}
+}
+
+@keyframes blinkTextCursor {
+from {
+    border-right-color: rgba(255, 255, 255, .75);
+}
+
+to {
+    border-right-color: transparent;
+}
+}
+
+.fade-content {
+animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+0% {
+    opacity: 0;
+}
+
+100% {
+    opacity: 1;
+}
+}
+
+.skills-info {
+border: 2px solid #00bcf2;
+border-radius: 10px;
+}
+
+.other-info {
+border: 2px solid rgb(242, 97, 11);
+border-radius: 10px;
+}
+
+.list-el{
+transition: all .3s ease-in-out;
+}
+
+.list-el:hover{
+color: rgb(242, 97, 11);
+}
+
+.tile {
+-webkit-transition-delay: .3s;
+-o-transition-delay: .3s;
+transition-delay: .3s;
+-webkit-transition: .4s;
+-o-transition: .4s;
+transition: 1s;
+/* -webkit-filter: grayscale(1);
+filter: grayscale(1); */
+}
+
+.bottom-right.inView {
+opacity: 1;
+}
+
+.inView {
+opacity: 1;
+}
+
+aside h1 span {
+animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.pulse-emoji{
+animation: pulse 1.5s cubic-bezier(0.9, 1, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+0%, 100% {
+  opacity: 1;
+}
+50% {
+  opacity: .5;
+}
+}
+
+.card{
+transition: all 0.3s ease;
+
+}
+
+.hide-btn{
+display: none;
+}
+
+.card:hover{
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+transform: scale(1.05);
+}
+
+.linkto{
+transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.linkto a:hover{
+text-shadow: 2px 2px black;
+border-radius: 10px;
+color: white;
+cursor: pointer;
+padding:1%;
+}
+
+.graybg{
+background-color: rgb(178,181,182, 0.1);
+}
+</style>
+<body>
+  <div class="flex-container mt-5">
+    <aside class="w-50">
+      <h1>Angela Janevska<span class="w-25">&#128640;</span> </h1>
+      <h3 class="line-1 anim-typewriter text-white">&lt;/Full Stack Software Developer&gt;</h3>
+      <div class="mt-1">
+        <a href="https://github.com/angelajanevska" target="_blank" style="text-decoration: none;"
+          class="icon-link icon-link-hover social"><i class="bi bi-github text-white pe-2"></i></a>
+        <a href="https://linkedin.com/in/angela-janevska" target="_blank" style="text-decoration: none;"
+          class="social"><i class="bi bi-linkedin text-white pe-2"></i></a>
+        <a href="mailto:janevskaangela@outlook.com" target="_blank" style="text-decoration: none;" class="social"><i
+            class="bi bi-envelope text-white pe-2"></i></a>
+      </div>
+      <ul class="hide-small-sc mt-3 pt-3 text-white text-start p-0" style="list-style: none;">
+        <li class="pb-1 linkto"><a style="text-decoration: none;" class="text-white" href="#about"><span
+              class="emoji">&#128073;</span>
+            About</a></li>
+        <li class="pb-1 linkto"><a style="text-decoration: none;" class="text-white" href="#skills"><span
+              class="emoji">&#128073;</span>
+            Skills</a></li>
+        <li class="pb-1 linkto"><a style="text-decoration: none;" class="text-white" href="#experience"><span
+              class="emoji">&#128073;</span>
+            Experience</a></li>
+        <li class="pb-1 linkto"><a style="text-decoration: none;" class="text-white" href="#projects"><span
+              class="emoji">&#128073;</span>
+            Projects</a></li>
+      </ul>
+    </aside>
+    <main class="w-75">
+      <div id="about" class="content">
+        <p class="justify-content-center text-area mt-5">Holder of a <span class="org-color">Bachelor's degree</span>
+          in Computer Science and an experienced <span class="org-color">
+            software
+            developer</span> with a passion for <u>problem-solving</u> and a proven ability to <u>learn quickly</u>
+          and
+          <u>adapt seamlessly</u>. <br><br>
+          Ambitious and results-driven, I thrive when I work on something that challenges me, continuously seeking
+          <u>growth opportunities</u>, both personally and professionally.<br><br>
+          As a skillful <span class="org-color">graphic designer</span>, I add a <u>creative touch</u>
+          to
+          everything I do.
+        </p>
+        <div class="row d-flex justify-content-center mt-5 pe-2">
+          <div class="col w-50 fade-content">
+            <p class="row years-info">
+              <span class="numbers-txt"><b>8+ Years</b></span>
+            <p>Turning pixels into graphic masterpieces</p>
+            </p>
+          </div>
+          <div class="col w-50 fade-content">
+            <p class="row years-info">
+              <span class="numbers-txt"><b>6+ Years</b></span>
+            <p>Mastering the software development skills</p>
+            </p>
+          </div>
+        </div>
+      </div><!--about ends-->
+      <div id="skills" class="content tile inactive">
+        <p>Technical skills &#128187;</p>
+        <div class="row d-flex pb-3">
+          <div class="col-2 fade-content mt-1 mb-1">
+            <div class="skills-info text-center">C#</div>
+          </div>
+          <div class="col-2 fade-content mt-1 mb-1">
+            <div class="skills-info text-center">.NET</div>
+          </div>
+          <div class="col-2 fade-content mt-1 mb-1 text-center">
+            <div class="skills-info">Java</div>
+          </div>
+          <div class="col-3 fade-content mt-1 mb-1 text-center">
+            <div class="skills-info">Spring Boot</div>
+          </div>
+          <div class="col-2 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">Angular</div>
+          </div>
+          <div class="col-3 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">Bootstrap</div>
+          </div>
+          <div class="col-2 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">CSS</div>
+          </div>
+          <div class="col-2 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">CI/CD</div>
+          </div>
+          <div class="col-2 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">Azure</div>
+          </div>
+          <div class="col-2 fade-content text-center mt-1 mb-1">
+            <div class="skills-info">SQL</div>
+          </div>
+          <div class="col-2 fade-content text-center mt-1 mb-1">
+            <div class="skills-info">Git</div>
+          </div>
+          <div class="col-4 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">Adobe Illustrator</div>
+          </div>
+          <div class="col-2 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">Figma</div>
+          </div>
+          <div class="col-3 fade-content">
+            <div class="skills-info text-center mt-1 mb-1">WordPress</div>
+          </div>
+        </div>
+        <p>&#127942; <u>First place</u> on <a href="https://fss.finki.ukim.mk/nastani" class="org-link" target="_blank"
+            style="text-decoration: none; color:orange">DIGIT</a> - competitive event for building a themed <span
+            class="skills-info ps-2 pe-2">Angular</span> application within a 5-day timeframe.</p>
+
+        <p class="mt-5">Other skills <span class="w-25">&#128204;</span></p>
+        <div class="row d-flex pb-3">
+          <div class="col-4 fade-content mt-1 mb-1">
+            <div class="other-info text-center">Agile Methodologies</div>
+          </div>
+          <div class="col-2 fade-content mt-1 mb-1">
+            <div class="other-info text-center">Scrum</div>
+          </div>
+          <div class="col-3 fade-content mt-1 mb-1 text-center">
+            <div class="other-info">Graphic Design</div>
+          </div>
+          <div class="col-2 fade-content mt-1 mb-1">
+            <div class="other-info text-center">Pitch</div>
+          </div>
+        </div>
+        <p>&#127942; <u>First place</u> on <a href="https://www.techstars.com/communities/startup-weekend"
+            class="org-link" target="_blank" style="text-decoration: none; color:orange">Techstars Startup Weekend</a> -
+          a dynamic 3-day event for conceptualizing a
+          business idea from inception to final <span class="other-info ps-2 pe-2">Pitch</span></p>
+        <p>&#127942; <u>First place</u> on <a href="https://www.longestpitchmarathon.mk/" class="org-link"
+            target="_blank" style="text-decoration: none; color:orange">Longest Pitch Marathon</a> - Open <span
+            class="other-info ps-2 pe-2">Pitch</span>
+          session for FINKI's entrepreneurial students.</p>
+      </div><!--skills end-->
+      <div id="experience" class="content tile inactive">
+        <div class="row d-flex justify-content-start">
+          <h2 class="col-1 me-4">&#128073;</h2>
+          <div class="col">
+            <h6><b>Software Developer @ <a target="_blank" href="www.ats-global.com"
+                  style="color: #00bcf2; text-decoration: none;">ATS
+                  GLOBAL</a></b></h6>
+            <p class="timeline">December 2022 - Present</p>
+          </div>
+        </div><br>
+        <div class="row d-flex justify-content-start">
+          <h2 class="col-1 me-4">&#128073;</h2>
+          <div class="col">
+            <h6><b>Freelance Graphic Designer and Web Developer</b></h6>
+            <p class="timeline">2016 - Present</p>
+          </div>
+        </div><br>
+        <div class="row d-flex justify-content-start">
+          <h2 class="col-1 me-4">&#128073;</h2>
+          <div class="col">
+            <h6><b>Software Developer Intern @ <a target="_blank" href="www.ats-global.com"
+                  style="color: #00bcf2; text-decoration: none;">ATS GLOBAL</a></b></h6>
+            <p class="timeline">September 2022 - December 2022</p>
+          </div>
+        </div><br>
+        <div class="row d-flex justify-content-start">
+          <h2 class="col-1 me-4">&#128073;</h2>
+          <div class="col">
+            <h6><b>WordPress Developer and Graphic Designer @ <a target="_blank" href="https://globalnet.mk/"
+                  style="color: #00bcf2; text-decoration: none;">GLOBAL NET</a></b></h6>
+            <p class="timeline">July 2019 - September 2019</p>
+          </div>
+        </div>
+      </div>
+      <div id="projects" class="content inactive" style="margin-bottom: 50%;">
+        <div class="card p-2 border-secondary bg-transparent mb-5" onmouseenter="cardHoverFunction(this)"
+          onmouseleave="cardMouseLeaveFunction(this)">
+          <div class="card-header">
+            01 - Recruitica
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-2">
+              <p style="font-size:small;">&#127891;<span style="text-decoration: none; color:orange">Bachelor's
+                  Thesis</span> </p>
+              <p class="text-white pb-2">Web based human resource management application</p>
+              <footer class="blockquote-footer context" style="font-size:medium;">The application provides comprehensive
+                functionalities for tracking candidate applications through various stages, filtering them, and
+                automatically generating work contracts.<br><br>-
+                Recruitica's frontend and backend are deployed as two separate App Services in Azure, following the
+                CI/CD principles. The code is
+                stored in Azure DevOps Repositories.</footer>
+              <div class="row d-flex pb-3">
+                <div class="col-2 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">C#/.NET</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">SQL</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1 text-center">
+                  <div class="skills-info" style="font-size:small;">Azure</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1 text-center">
+                  <div class="skills-info" style="font-size:small;">CI/CD</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1 text-center">
+                  <div class="skills-info" style="font-size:small;">Angular</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1 text-center">
+                  <div class="skills-info" style="font-size:small;">Bootstrap</div>
+                </div>
+              </div>
+              <p class="linkto" style="font-size:medium;"><a href="https://recruitica.azurewebsites.net"
+                  style="color: #00bcf2; text-decoration: none;" target="_blank">View deployed app</a> <span
+                  class="pulse-emoji">&#128064;</span></p>
+            </blockquote>
+          </div>
+        </div>
+        <div class="card p-2 border-secondary bg-transparent mb-5" onmouseenter="cardHoverFunction(this)"
+          onmouseleave="cardMouseLeaveFunction(this)">
+          <div class="card-header">
+            02 - SwaggerAPIToRDFConvertor
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p class="text-white pb-2">NuGet Package for converting Swagger API to RDF Triples</p>
+              <footer class="blockquote-footer context" style="font-size:medium;">NuGet library used by developers for
+                converting Swagger API to RDF triples
+                and using the result within their applications.</footer>
+              <div class="row d-flex pb-3">
+                <div class="col-2 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">C#</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">.NET</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">Swagger</div>
+                </div>
+                <div class="col-3 fade-content mt-1 mb-1 text-center">
+                  <div class="skills-info" style="font-size:small;">Linked Data</div>
+                </div>
+              </div>
+              <div class="row justify-content-between">
+                <p class="col linkto" style="font-size:medium;"><a target="_blank"
+                    href="https://www.nuget.org/packages/swagger-to-rdf#"
+                    style="color: #00bcf2; text-decoration: none;">View NuGet Package</a> <span
+                    class="pulse-emoji">&#128064;</span></p>
+                <p class="col linkto" style="font-size:medium;"><a target="_blank"
+                    href="https://github.com/angelajanevska/SwaggerAPIToRDFConvertor"
+                    style="color: #00bcf2; text-decoration: none;">View GitHub Repository</a> <span
+                    class="pulse-emoji">&#128269;</span></p>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+        <div class="card p-2 border-secondary bg-transparent mb-4" onmouseenter="cardHoverFunction(this)"
+          onmouseleave="cardMouseLeaveFunction(this)">
+          <div class="card-header">
+            03 - Restyle
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p style="font-size:small;">&#127942; First place on <a href="https://fss.finki.ukim.mk/nastani"
+                  class="org-link" target="_blank" style="text-decoration: none; color:orange">DIGIT</a> </p>
+              <p class="text-white pb-2">Online second hand shop.</p>
+              <footer class="blockquote-footer context" style="font-size:medium;">Angular application that serves as an
+                online shop for selling and buying used clothes.
+              </footer>
+              <div class="row d-flex pb-3">
+                <div class="col-3 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">Angular</div>
+                </div>
+                <div class="col-3 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">Bootstrap</div>
+                </div>
+                <div class="col-2 fade-content mt-1 mb-1">
+                  <div class="skills-info text-center" style="font-size:small;">CSS</div>
+                </div>
+              </div>
+              <div class="row d-flex">
+                <p class="col linkto" style="font-size:medium;"><a href="https://restyle.vercel.app/"
+                    style="color: #00bcf2; text-decoration: none;" target="_blank">View deployed app</a> <span
+                    class="pulse-emoji">&#128064;</span></p>
+                <p class="col linkto" style="font-size:medium;"><a target="_blank"
+                    href="https://github.com/angelajanevska/Restyle" style="color: #00bcf2; text-decoration: none;">View
+                    GitHub Repository</a> <span class="pulse-emoji">&#128269;</span></p>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="text-center show-more-btn"><button onclick="showMoreProjects()" id="hide-btn"
+            class="show-more-btn text-center text-white ps-2 pe-2" style="border: 2px solid rgb(242, 97, 11);
+          border-radius: 10px;
+          background: none;">Show More</button></div>
+
+        <div id="additionalProjects" style="opacity: 0;">
+          <div class="card p-2 border-secondary bg-transparent mb-5" onmouseenter="cardHoverFunction(this)"
+            onmouseleave="cardMouseLeaveFunction(this)">
+            <div class="card-header">
+              04 - NajdiKompjuter (FindComputer)
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p class="text-white pb-2">Website for searching local computer stores</p>
+                <footer class="blockquote-footer context" style="font-size:medium;">This website was build in
+                  microservice architecture using osmfilter for extracting data stored as csv from OpenStreetMaps.
+                </footer>
+                <div class="row d-flex pb-3">
+                  <div class="col-2 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">C#</div>
+                  </div>
+                  <div class="col-2 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">.NET</div>
+                  </div>
+                  <div class="col-2 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">Swagger</div>
+                  </div>
+                  <div class="col-3 fade-content mt-1 mb-1 text-center">
+                    <div class="skills-info" style="font-size:small;">Microservices</div>
+                  </div>
+                </div>
+                <div class="row d-flex">
+                  <p class="col linkto" style="font-size:medium;"><a target="_blank"
+                      href="https://github.com/angelajanevska/SwaggerAPIToRDFConvertor"
+                      style="color: #00bcf2; text-decoration: none;">View GitHub Repository</a> <span
+                      class="pulse-emoji">&#128269;</span></p>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+          <div class="card p-2 border-secondary bg-transparent mb-5" onmouseenter="cardHoverFunction(this)"
+            onmouseleave="cardMouseLeaveFunction(this)">
+            <div class="card-header">
+              05 - BookCorner
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p class="text-white pb-2">Personalized online book library</p>
+                <footer class="blockquote-footer context" style="font-size:medium;">Spring Boot application for a
+                  virtual book library using Google API book data and local database.
+                </footer>
+                <div class="row d-flex pb-3">
+                  <div class="col-3 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">Spring Boot</div>
+                  </div>
+                  <div class="col-3 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">Thymeleaf</div>
+                  </div>
+                  <div class="col-3 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">Google API</div>
+                  </div>
+                  <div class="col-2 fade-content mt-1 mb-1 text-center">
+                    <div class="skills-info" style="font-size:small;">AJAX</div>
+                  </div>
+                </div>
+                <div class="row d-flex">
+                  <p class="col linkto" style="font-size:medium;"><a target="_blank"
+                      href="https://github.com/angelajanevska/BookCorner"
+                      style="color: #00bcf2; text-decoration: none;">View GitHub Repository</a> <span
+                      class="pulse-emoji">&#128269;</span></p>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+          <div class="card p-2 border-secondary bg-transparent mb-5" onmouseenter="cardHoverFunction(this)"
+            onmouseleave="cardMouseLeaveFunction(this)">
+            <div class="card-header">
+              06 - Students Platform
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p class="text-white pb-2">FINKI Students Platform</p>
+                <footer class="blockquote-footer context" style="font-size:medium;">Platform for organizing group
+                  studies for students of FINKI.
+                </footer>
+                <div class="row d-flex pb-3">
+                  <div class="col-3 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">Spring Boot</div>
+                  </div>
+                  <div class="col-3 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">Thymeleaf</div>
+                  </div>
+                  <div class="col-3 fade-content mt-1 mb-1">
+                    <div class="skills-info text-center" style="font-size:small;">Google API</div>
+                  </div>
+                  <div class="col-2 fade-content mt-1 mb-1 text-center">
+                    <div class="skills-info" style="font-size:small;">AJAX</div>
+                  </div>
+                </div>
+                <div class="row d-flex">
+                  <p class="col linkto" style="font-size:medium;"><a target="_blank"
+                      href="https://github.com/angelajanevska/StudentsPlatform"
+                      style="color: #00bcf2; text-decoration: none;">View Frontend Repository</a> <span
+                      class="pulse-emoji">&#128269;</span></p>
+                  <p class="col linkto" style="font-size:medium;"><a target="_blank"
+                      href="https://github.com/angelajanevska/timski-proekt-spring"
+                      style="color: #00bcf2; text-decoration: none;">View Backend Repository</a> <span
+                      class="pulse-emoji">&#128269;</span></p>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+          <div class="text-center">
+            <p>Find more on my <a href="https://github.com/angelajanevska/" class="org-color">GitHub</a> &#128075;</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
